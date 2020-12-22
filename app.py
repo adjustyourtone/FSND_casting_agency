@@ -45,7 +45,7 @@ def create_app(test_config=None):
         return jsonify({
             'message': 'Click this link to sign in with the provided credentials.',
             'url': url
-        })
+        }), 200
 
     # Logout of Auth0 session
 
@@ -57,7 +57,7 @@ def create_app(test_config=None):
 
         return jsonify({
             'logout_url': url
-        })
+        }), 200
 
     # A logout redirect with JS.
 
@@ -87,12 +87,15 @@ def create_app(test_config=None):
     @requires_auth('get:movies')
     def get_movies(payload):
         """This endpoint will retrieve all movies."""
-        movies = Movie.query.all()
+        try:
+            movies = Movie.query.all()
 
-        return jsonify({
-            'success': True,
-            'movies': [movie.format() for movie in movies]
-        })
+            return jsonify({
+                'success': True,
+                'movies': [movie.format() for movie in movies]
+            })
+        except:
+            abort(401)
 
     # Create a route to view an actor by ID
 
@@ -176,18 +179,22 @@ def create_app(test_config=None):
     @app.route('/api/actors/<int:id>', methods=['DELETE'])
     @requires_auth('delete:actor')
     def delete_actor(payload, id):
-        actor = Actor.query.get(id)
 
-        if actor is None:
-            abort(404)
+        try:
+            actor = Actor.query.get(id)
 
-        actor.delete()
+            if actor is None:
+                abort(404)
 
-        return jsonify({
-            'success': True,
-            'delete': actor.format()
-        }), 200
+            actor.delete()
 
+            return jsonify({
+                'success': True,
+                'delete': actor.format()
+            }), 200
+
+        except:
+            abort(401)
     # Define a route to Create Movies (/movies)
 
     @app.route('/api/movies', methods=['POST'])
