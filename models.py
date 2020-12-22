@@ -2,10 +2,11 @@ from flask_sqlalchemy import SQLAlchemy, sqlalchemy
 
 db = SQLAlchemy()
 
-database_path = 'postgres://postgres:root@localhost:5432/castingagency'
+database_path = 'postgresql://postgres:root@localhost:5432/castingagency'
+
 
 def setup_db(app, database_path=database_path):
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:root@localhost:5432/castingagency'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost:5432/castingagency'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
     db.init_app(app)

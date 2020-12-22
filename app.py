@@ -7,21 +7,19 @@ from models import setup_db, Movie, Actor
 from auth.auth import AUTH0_DOMAIN, CLIENT_ID, REDIRECT_URL, LOGOUT_URL, API_AUDIENCE, AuthError, requires_auth
 
 
-app = Flask(__name__)
-db = SQLAlchemy()
-migrate = Migrate(app, db)
-
 def create_app(test_config=None):
-    app
+    app = Flask(__name__)
+    db = SQLAlchemy()
+    migrate = Migrate(app, db)
     setup_db(app)
     CORS(app, resources={r"/api/*"})
 
     @app.after_request
     def after_request(response):
         response.headers.add('Access-Control-Allow-Headers',
-                            'Content-Type, Authorization')
+                             'Content-Type, Authorization')
         response.headers.add('Access-Control-Allow-Methods',
-                            'GET, POST, PATCH, DELETE')
+                             'GET, POST, PATCH, DELETE')
         return response
 
 #----------------------------------------------------------------------------#
@@ -29,11 +27,13 @@ def create_app(test_config=None):
 #----------------------------------------------------------------------------#
 
     @app.route('/')
-    def index():
-        return 'Healthy'
-
+    def health_check():
+        return jsonify({
+            'status': 'Healthy'
+        }), 200
 
     # Genereate an Auth0 login session URL
+
     @app.route("/authorization/url", methods=["GET"])
     def generate_auth_url():
         """This endpoint will allow you to generate an auth URL"""
@@ -47,8 +47,8 @@ def create_app(test_config=None):
             'url': url
         })
 
-
     # Logout of Auth0 session
+
     @app.route('/authorization/logout', methods=['GET'])
     def generate_logout_url():
         """This endpoint will clear your Auth0 session."""
@@ -59,14 +59,14 @@ def create_app(test_config=None):
             'logout_url': url
         })
 
-
     # A logout redirect with JS.
+
     @app.route('/logout')
     def logout():
         return f"<html><body><p>You are logged out and will return home in 3 seconds.</p><script>var timer = setTimeout(function() {{window.location='{ '/' }'}}, 3000);</script></body></html>"
 
-
     # Define a route to get all Actors (/actors)
+
     @app.route('/api/actors')
     @requires_auth('get:actors')
     def get_actors(payload):
@@ -78,8 +78,8 @@ def create_app(test_config=None):
             'actors': [actor.format() for actor in actors]
         }), 200
 
-
     # Define a route to get all Movies (/movies)
+
     @app.route('/api/movies')
     @requires_auth('get:movies')
     def get_movies(payload):
@@ -91,8 +91,8 @@ def create_app(test_config=None):
             'movies': [movie.format() for movie in movies]
         })
 
-
     # Create a route to view an actor by ID
+
     @app.route('/api/actors/<int:id>', methods=['GET'])
     @requires_auth('get:actors')
     def view_actor(payload, id):
@@ -104,8 +104,8 @@ def create_app(test_config=None):
             'actor': actor.format()
         })
 
-
     # Create a route to view a movie by ID
+
     @app.route('/api/movies/<int:id>', methods=['GET'])
     @requires_auth('get:movies')
     def view_movie(payload, id):
@@ -117,8 +117,8 @@ def create_app(test_config=None):
             'movie': movie.format()
         })
 
-
     # Define a route to Create Actors (/actors)
+
     @app.route('/api/actors', methods=['POST'])
     @requires_auth('post:actor')
     def create_actor(payload):
@@ -141,8 +141,8 @@ def create_app(test_config=None):
             'actor': new_actor.format()
         }), 200
 
-
     # define a route that can Patch actors by ID
+
     @app.route('/api/actors/<int:id>', methods=['PATCH'])
     @requires_auth('patch:actor')
     def update_actor(payload, id):
@@ -168,8 +168,8 @@ def create_app(test_config=None):
             'actor': actor.format()
         }), 200
 
-
     # Define a route that can Delete actors by ID
+
     @app.route('/api/actors/<int:id>', methods=['DELETE'])
     @requires_auth('delete:actor')
     def delete_actor(payload, id):
@@ -185,8 +185,8 @@ def create_app(test_config=None):
             'delete': actor.format()
         }), 200
 
-
     # Define a route to Create Movies (/movies)
+
     @app.route('/api/movies', methods=['POST'])
     @requires_auth('post:movie')
     def create_movies(payload):
@@ -208,8 +208,8 @@ def create_app(test_config=None):
             "movie": new_movie.format()
         }), 200
 
-
     # Define a route to Patch movies by ID
+
     @app.route('/api/movies/<int:id>', methods=['PATCH'])
     @requires_auth('patch:movie')
     def update_movies(payload, id):
@@ -233,8 +233,8 @@ def create_app(test_config=None):
             'movie': movie.format()
         }), 200
 
-
     # Create an endpoint to Delete a Movie
+
     @app.route('/api/movies/<int:id>', methods=['DELETE'])
     @requires_auth('delete:movie')
     def delete_movie(payload, id):
@@ -247,8 +247,8 @@ def create_app(test_config=None):
             'deleted': movie.format()
         }), 200
 
-
     # Error Handlers
+
     @app.errorhandler(AuthError)
     def process_AuthError(error):
         """AuthError effor handler."""
@@ -256,7 +256,6 @@ def create_app(test_config=None):
         response.status_code = error.status_code
 
         return response
-
 
     @app.errorhandler(400)
     def bad_request(error):
@@ -267,7 +266,6 @@ def create_app(test_config=None):
             "message": "Bad Request. Please verify the information you submitted is correct and try again."
         }), 400
 
-
     @app.errorhandler(401)
     def unauthorized(error):
         """Unauthorized attempt error handler."""
@@ -276,7 +274,6 @@ def create_app(test_config=None):
             "error": 401,
             "message": "Unauthorized attempt."
         }), 401
-
 
     @app.errorhandler(404)
     def resource_not_found(error):
@@ -287,7 +284,6 @@ def create_app(test_config=None):
             'message': 'This resoure has not been found.'
         }), 404
 
-
     @app.errorhandler(422)
     def unprocessable(error):
         """Unprocessable entity error handeler."""
@@ -296,7 +292,6 @@ def create_app(test_config=None):
             "error": 422,
             "message": "This is an unprocessable entity."
         }), 422
-
 
     @app.errorhandler(500)
     def internal_server_error(error):
@@ -307,9 +302,10 @@ def create_app(test_config=None):
             "message": "Internal server error. Please try again."
         }), 500
 
+    return app
 
 
-APP = create_app()
+api = create_app()
 
 if __name__ == '__main__':
-    APP.run()
+    api.run()
