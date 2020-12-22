@@ -71,12 +71,15 @@ def create_app(test_config=None):
     @requires_auth('get:actors')
     def get_actors(payload):
         """This endpoint will retrieve all actors."""
-        actors = Actor.query.all()
+        try:
+            actors = Actor.query.all()
 
-        return jsonify({
-            'success': True,
-            'actors': [actor.format() for actor in actors]
-        }), 200
+            return jsonify({
+                'success': True,
+                'actors': [actor.format() for actor in actors]
+            }), 200
+        except:
+            abort(401)
 
     # Define a route to get all Movies (/movies)
 

@@ -7,6 +7,12 @@ from app import create_app
 from models import setup_db, Movie, Actor
 
 
+# # Helper function to make testing easier
+# def test_get_all_actors():
+#     query = Actor.query.all()
+#     return query
+
+
 # Create a Test Case Class
 class RolesTestCase(unittest.TestCase):
     """This class will establish the Roles test case."""
@@ -24,6 +30,7 @@ class RolesTestCase(unittest.TestCase):
             self.db.init_app(self.app)
 
             self.db.create_all()
+        self.casting_assistant = os.getenv("ASSISTANT_TOKEN")
 
     def tearDown(self):
         """Run after each reach test."""
@@ -37,6 +44,23 @@ class RolesTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('status', data)
         self.assertEqual(data['status'], 'Healthy')
+
+    def test_get_all_actors(self):
+        """Successfully test get_actors with token"""
+        response = self.client().get('/api/actors', headers={"Content-Type": "application/json",
+                                                             "Authorization": "Bearer {}".format(self.casting_assistant)
+                                                             })
+        data = json.loads(response.data)
+
+        self.assertTrue(data['success'], True)
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_all_actors_401(self):
+        """Test to make sure a failed request returns HTTP Status 401"""
+        response = self.client().get('/api/actors')
+        data = json.loads(response.data)
+
+        self.assertEqual(response.status_code, 401)
 
 
 # Run Test.py
