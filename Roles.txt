@@ -1,4 +1,4 @@
-Role sign-in:
+Please see below for login information for each authorized member of the application. Please note that tokens are good for 24hrs. New tokens can easily be generated for usage with dedicated API endpoints. Don't forget to replace the tokens in 'setup.sh' to utilize them for testing.
 
 Assistant:
 email: assistant@castingagency.com

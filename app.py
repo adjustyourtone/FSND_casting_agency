@@ -22,9 +22,11 @@ def create_app(test_config=None):
                              'GET, POST, PATCH, DELETE')
         return response
 
+
 #----------------------------------------------------------------------------#
 # Routes
 #----------------------------------------------------------------------------#
+
 
     @app.route('/')
     def health_check():
@@ -32,7 +34,7 @@ def create_app(test_config=None):
             'status': 'Healthy'
         }), 200
 
-    # Genereate an Auth0 login session URL
+    # This endpoint will allow you to sign in to Auth0 to generate a new access token. Please read the section on Token Generation in the README.MD
 
     @app.route("/authorization/url", methods=["GET"])
     def generate_auth_url():
@@ -47,7 +49,7 @@ def create_app(test_config=None):
             'url': url
         }), 200
 
-    # Logout of Auth0 session
+    # NOTE: Use this endpoint to easily logout of an Auth0 session to generate a new access token. See README.MD for more information.
 
     @app.route('/authorization/logout', methods=['GET'])
     def generate_logout_url():
@@ -59,13 +61,9 @@ def create_app(test_config=None):
             'logout_url': url
         }), 200
 
-    # A logout redirect with JS.
-
     @app.route('/logout')
     def logout():
         return f"<html><body><p>You are logged out and will return home in 3 seconds.</p><script>var timer = setTimeout(function() {{window.location='{ '/' }'}}, 3000);</script></body></html>"
-
-    # Define a route to get all Actors (/actors)
 
     @app.route('/api/actors')
     @requires_auth('get:actors')
@@ -81,8 +79,6 @@ def create_app(test_config=None):
         except:
             abort(401)
 
-    # Define a route to get all Movies (/movies)
-
     @app.route('/api/movies')
     @requires_auth('get:movies')
     def get_movies(payload):
@@ -97,8 +93,6 @@ def create_app(test_config=None):
         except:
             abort(401)
 
-    # Create a route to view an actor by ID
-
     @app.route('/api/actors/<int:id>', methods=['GET'])
     @requires_auth('get:actors')
     def view_actor(payload, id):
@@ -110,8 +104,6 @@ def create_app(test_config=None):
             'actor': actor.format()
         })
 
-    # Create a route to view a movie by ID
-
     @app.route('/api/movies/<int:id>', methods=['GET'])
     @requires_auth('get:movies')
     def view_movie(payload, id):
@@ -122,8 +114,6 @@ def create_app(test_config=None):
             'success': True,
             'movie': movie.format()
         })
-
-    # Define a route to Create Actors (/actors)
 
     @app.route('/api/actors', methods=['POST'])
     @requires_auth('post:actor')
@@ -146,8 +136,6 @@ def create_app(test_config=None):
             'success': True,
             'actor': new_actor.format()
         }), 200
-
-    # define a route that can Patch actors by ID
 
     @app.route('/api/actors/<int:id>', methods=['PATCH'])
     @requires_auth('patch:actor')
@@ -174,8 +162,6 @@ def create_app(test_config=None):
             'actor': actor.format()
         }), 200
 
-    # Define a route that can Delete actors by ID
-
     @app.route('/api/actors/<int:id>', methods=['DELETE'])
     @requires_auth('delete:actor')
     def delete_actor(payload, id):
@@ -195,8 +181,6 @@ def create_app(test_config=None):
 
         except:
             abort(401)
-
-    # Define a route to Create Movies (/movies)
 
     @app.route('/api/movies', methods=['POST'])
     @requires_auth('post:movie')
@@ -219,12 +203,10 @@ def create_app(test_config=None):
         except:
             abort(401)
 
-    # Define a route to Patch movies by ID
-
     @app.route('/api/movies/<int:id>', methods=['PATCH'])
     @requires_auth('patch:movie')
     def update_movies(payload, id):
-        """This endpoint will allow one to edit or delete a movie."""
+        """This endpoint will allow one to edit a movie by ID."""
         movie = Movie.query.get(id)
 
         if movie is None:
@@ -244,11 +226,10 @@ def create_app(test_config=None):
             'movie': movie.format()
         }), 200
 
-    # Create an endpoint to Delete a Movie
-
     @app.route('/api/movies/<int:id>', methods=['DELETE'])
     @requires_auth('delete:movie')
     def delete_movie(payload, id):
+        """This endpoint will allow you to delete a movie by ID"""
         movie = Movie.query.get(id)
 
         movie.delete()
@@ -259,7 +240,6 @@ def create_app(test_config=None):
         }), 200
 
     # Error Handlers
-
     @app.errorhandler(AuthError)
     def process_AuthError(error):
         """AuthError effor handler."""
@@ -317,6 +297,7 @@ def create_app(test_config=None):
 
 
 api = create_app()
+
 
 if __name__ == '__main__':
     api.run()
