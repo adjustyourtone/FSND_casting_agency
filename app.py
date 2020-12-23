@@ -195,6 +195,7 @@ def create_app(test_config=None):
 
         except:
             abort(401)
+
     # Define a route to Create Movies (/movies)
 
     @app.route('/api/movies', methods=['POST'])
@@ -210,13 +211,13 @@ def create_app(test_config=None):
 
             new_movie.insert()
 
-        except:
-            abort(400)
+            return jsonify({
+                'success': True,
+                "movie": new_movie.format()
+            }), 200
 
-        return jsonify({
-            'success': True,
-            "movie": new_movie.format()
-        }), 200
+        except:
+            abort(401)
 
     # Define a route to Patch movies by ID
 

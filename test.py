@@ -49,6 +49,20 @@ class RolesTestCase(unittest.TestCase):
 
         }
 
+        self.insert_new_movie = {
+            'title': "Dodgeball",
+            'release_date': "March 3rd, 2003"
+        }
+
+        self.edit_actor = {
+            'name': 'John Wayne'
+        }
+
+        self.edit_movie = {
+            'id': 6,
+            'title': 'Award Winning Movie'
+        }
+
     def tearDown(self):
         """Run after each reach test."""
         pass
@@ -62,11 +76,12 @@ class RolesTestCase(unittest.TestCase):
         self.assertIn('status', data)
         self.assertEqual(data['status'], 'Healthy')
 
+    # Get all Actors - Pass and Fail
     def test_get_all_actors(self):
         """Successfully test get_actors with assistant token"""
-        response = self.client().get('/api/actors', headers={"Content-Type": "application/json",
-                                                             "Authorization": "Bearer {}".format(self.casting_assistant)
-                                                             })
+        response = self.client().get('/api/actors',
+                                     headers={"Content-Type": "application/json",
+                                              "Authorization": "Bearer {}".format(self.casting_assistant)})
         data = json.loads(response.data)
 
         self.assertTrue(data['success'], True)
@@ -79,6 +94,8 @@ class RolesTestCase(unittest.TestCase):
 
         self.assertEqual(response.status_code, 401)
 
+    # Get all Movies - Pass and Fail
+
     def test_get_all_movies(self):
         """Use a Director Token to fetch all movies"""
         response = self.client().get('/api/movies',
@@ -89,25 +106,115 @@ class RolesTestCase(unittest.TestCase):
         self.assertTrue(data['success'], True)
 
     def test_get_all_movies_401(self):
-        """Use a Director Token to fetch all movies"""
+        """Test failure to get movies without Authorization"""
         response = self.client().get('/api/movies')
         data = json.loads(response.data)
 
         self.assertEqual(response.status_code, 401)
 
-    def test_post_new_actor(self):
-        """Use a Director Token to create a new actor"""
-        response = self.client().post('/api/actors',
-                                      headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.director)}, json=self.insert_new_actor)
+    # Post new actor - Pass and Fail
 
-        data = json.loads(response.data)
+    # def test_post_new_actor(self):
+    #     """Use a Director Token to create a new actor"""
+    #     response = self.client().post('/api/actors',
+    #                                   headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.director)}, json=self.insert_new_actor)
 
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue(['success'], True)
+    #     data = json.loads(response.data)
 
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTrue(['success'], True)
+
+    # def test_post_new_actor_401(self):
+    #     """Test failure to create an actor with assistant token"""
+    #     response = self.client().post('/api/actors',
+    #                                   headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.casting_assistant)}, json=self.insert_new_actor)
+    #     data = json.loads(response.data)
+
+    #     self.assertEqual(response.status_code, 401)
+
+    # Post New Movie - Pass and Fail
+
+    # def test_post_new_movie(self):
+    #     """Use Producer Token to Create new movie"""
+    #     response = self.client().post('/api/movies',
+    #                                   headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.producer)}, json=self.insert_new_movie)
+
+    #     data = json.loads(response.data)
+
+    #     self.assertTrue(['success'], True)
+    #     self.assertEqual(response.status_code, 200)
+
+    # def test_post_new_movie_401(self):
+    #     """Test failure to create movie with Director Token"""
+    #     response = self.client().post('/api/movies',
+    #                                   headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.director)}, json=self.insert_new_movie)
+
+    #     data = json.loads(response.data)
+
+    #     self.assertEqual(response.status_code, 401)
+
+    # Edit Actor - Past and Fail
+    # def test_edit_actor(self):
+    #     """Use Director token to edit an actor"""
+    #     response = self.client().patch('/api/actors/3',
+    #                                    headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.director)}, json=self.edit_actor)
+
+    #     data = json.loads(response.data)
+
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTrue(['success'], True)
+
+    # def test_edit_actor_401(self):
+    #     """Test failure to edit actor with assistant token"""
+    #     response = self.client().patch('/api/actors/1',
+    #                                    headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.casting_assistant)}, json=self.edit_actor)
+    #     data = json.loads(response.data)
+
+    #     self.assertEqual(response.status_code, 401)
+
+    # Edit Movie - Pass and Fail
+    # def test_edit_movie(self):
+    #     """Use Producer token to edit a movie."""
+    #     response = self.client().patch('/api/movies/3',
+    #                                    headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.producer)}, json=self.edit_movie)
+
+    #     data = json.loads(response.data)
+
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTrue(['success'], True)
+
+    # def test_edit_movie_401(self):
+    #     """Test failure to edit movie with Assistant Token"""
+    #     response = self.client().patch('/api/movies/5',
+    #                                    headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.casting_assistant)}, json=self.edit_movie)
+    #     data = json.loads(response.data)
+
+    #     self.assertEqual(response.status_code, 401)
+    # Delete Actor - Pass and Fail
+
+    # def test_delete_actor(self):
+    #     """Use producer token to delete an actor"""
+    #     response = self.client().delete('/api/actors/2',
+    #                                     headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.producer)})
+
+    #     data = json.loads(response.data)
+
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTrue(['success'], True)
+
+    # def test_delete_actor_401(self):
+    #     """Test failure to delete an actor with assistant token."""
+    #     response = self.client().delete('/api/actors/1',
+    #                                     headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.casting_assistant)})
+
+    #     data = json.loads(response.data)
+
+    #     self.assertEqual(response.status_code, 401)
+
+    # Delete Movie - Pass and Fail
     def test_delete_actor(self):
-        """Use producer token to delete an actor"""
-        response = self.client().delete('/api/actors/7',
+        """Use producer token to delete a movie."""
+        response = self.client().delete('/api/movies/6',
                                         headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.producer)})
 
         data = json.loads(response.data)
@@ -116,9 +223,9 @@ class RolesTestCase(unittest.TestCase):
         self.assertTrue(['success'], True)
 
     def test_delete_actor_401(self):
-        """Use assistant token to delete an actor"""
-        response = self.client().delete('/api/actors/7',
-                                        headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.casting_assistant)})
+        """Test failure to delete an actor with a Director token."""
+        response = self.client().delete('/api/movies/5',
+                                        headers={"Content-Type": "application/json", "Authorization": "Bearer {}".format(self.director)})
 
         data = json.loads(response.data)
 
