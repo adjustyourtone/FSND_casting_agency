@@ -68,7 +68,7 @@ Note: The --reload flag will detect changes and restart your development server 
 
 If you need to update your Postgres login credentials, this would also be done in the setup.sh file by changing the DATABASE_URL and TEST_DATABASE_URL strings, respectively.
 
-As a reminder, these strings are formatted as:
+**As a reminder, these strings are formatted as:
 
 postgresql://{username}:{password}@{host}:{port}/{database_name}
 
@@ -126,6 +126,7 @@ With the API running, we will use Postman to check and verify role based actions
 Local Development:
 local_dev_casting_agency.postman_collection.json  OR
 
+Live Heroku Deployment:
 heroku_casting_agency.postman_collection.json
 ```
 
