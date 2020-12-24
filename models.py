@@ -1,8 +1,9 @@
+import os
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-database_path = 'postgresql://postgres:root@localhost:5432/castingagency'
+database_path = os.environ['DATABASE_URL']
 
 
 def setup_db(app, database_path=database_path):
