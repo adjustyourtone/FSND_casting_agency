@@ -1,8 +1,8 @@
 #Setup Variables
 export FLASK_APP=app.py
-export DATABASE_URL='postgres://qqatkcbskuosle:dfb3932726ddf74aaa3cb0e140ee80f3fe6f188ff7639be9c268aabc6e05fdc1@ec2-18-211-171-122.compute-1.amazonaws.com:5432/daci41m8pi2gq4'
+# export DATABASE_URL='postgres://qqatkcbskuosle:dfb3932726ddf74aaa3cb0e140ee80f3fe6f188ff7639be9c268aabc6e05fdc1@ec2-18-211-171-122.compute-1.amazonaws.com:5432/daci41m8pi2gq4'
 
-# export DATABASE_URL='postgresql://postgres:root@localhost:5432/castingagency'
+export DATABASE_URL='postgresql://postgres:root@localhost:5432/castingagency'
 # export TEST_DATABASE_URL='postgresql://postgres:root@localhost:5432/test_castingagency'
 
 # Authorization Variables
