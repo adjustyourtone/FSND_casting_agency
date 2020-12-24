@@ -114,7 +114,7 @@ HEROKU_casting_agency.postman_collection
 
 Load your desired endpoints into Postman and with your provided access tokens you can begin interacting with the API.
 
-### Endpoint Reference
+### API Endpoint Reference
 
 #### GET /api/actors
 
@@ -358,9 +358,21 @@ Example response:
 }
 ```
 
+#### Error Handlers
+
+This application contains unique error handlers for a variety of authentication and request errors, including:
+
+- 400 - Bad Request
+- 401 - Unauthorized Attempt
+- 404 - Resource Not Found
+- 422 - Unprocessable Entity
+- 500 - Internal Server Error
+
 ### Unittest Implementation
 
 For unit testing, it is recommending to use a separate version of a working database to avoid manipulating your working data. To achieve this, you will need to create a new database for testing purposes and change two configuration settings in the project.
+
+From your terminal run:
 
 ```
 createdb test_castingagency
@@ -372,7 +384,7 @@ Make sure you are in the project directory and run the following command:
 psql test_castingagency < test_castingagency.psql
 ```
 
-Once this is done, you will have a new database filled with dummy data to use for testing purposes.
+Once this is done, you will have a new database filled with dummy data to use for testing purposes. If you desire, you can use this for testing with Postman as well.
 
 ##### Reconfigure Application
 

@@ -247,7 +247,7 @@ def create_app(test_config=None):
         """Bad request error handler."""
         return jsonify({
             "success": False,
-            "error": 422,
+            "error": 400,
             "message": "Bad Request. Please verify the information you submitted is correct and try again."
         }), 400
 
