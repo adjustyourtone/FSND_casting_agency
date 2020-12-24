@@ -8,7 +8,7 @@ export AUTH0_DOMAIN='dev-bdz6mf42.us.auth0.com'
 export ALGORITHMS=['RS256']
 export API_AUDIENCE='CastingAgency'
 export CLIENT_ID='yioDqYyd0o3p18z1JwBUmzEIy168fEAq'
-export REDIRECT_URL="http://localhost:5000"
+export REDIRECT_URL="http://localhost:5000/"
 export LOGOUT_URL="http://localhost:5000/logout"
 
 

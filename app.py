@@ -57,7 +57,7 @@ def create_app(test_config=None):
 
     @app.route('/logout')
     def logout():
-        return f"<html><body><p>You are logged out and will return home in 3 seconds.</p><script>var timer = setTimeout(function() {{window.location='{ '/' }'}}, 3000);</script></body></html>"
+        return f"<html><body><p>You are logged out and will be redirected momentarily.</p><script>var timer = setTimeout(function() {{window.location='{ '/authorization/url' }'}}, 3000);</script></body></html>"
 
     @app.route('/api/actors')
     @requires_auth('get:actors')

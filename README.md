@@ -94,7 +94,11 @@ Copy this token all the way up to the
 ....&expires_in=86400&token_type=Bearer (make sure to leave this section out of the token)
 ```
 
-With your token in hand, make note of which credential you used to sign in and navigate over to your setup.sh file in the project directory and replace the provided JWT with your newly provided JWT. Repeat this step for each role.
+With your token in hand, make note of which credential you used to sign in and navigate over to your setup.sh file in the project directory and replace the provided JWT with your newly provided JWT.
+
+To generate a token for a new role, navigate to '/authorization/logout' where you will be provided a logout link. Click the link to be logged out. You will be redirected to the '/authorization/url' endpoint where you can sign-in again.
+
+Repeat as needed for each role.
 
 Because we will be using Postman to test this API, it is recommended you replace the JWT in the Roles.txt file to limit the interaction with the setup.sh script file.
 
@@ -110,7 +114,251 @@ HEROKU_casting_agency.postman_collection
 
 Load your desired endpoints into Postman and with your provided access tokens you can begin interacting with the API.
 
-#### Unittest Implementation
+### Endpoint Reference
+
+#### GET /api/actors
+
+- Returns a list of all actors in the database. Available across all roles.
+
+```
+Example return:
+
+{
+    "actors": [
+        {
+            "age": 42,
+            "gender": "Male",
+            "id": 4,
+            "name": "Bradley Cooper"
+        },
+        {
+            "age": 53,
+            "gender": "Male",
+            "id": 5,
+            "name": "Will Ferrell"
+        },
+        {
+            "age": 47,
+            "gender": "Female",
+            "id": 6,
+            "name": "Sandra Bullock"
+        }
+    ],
+    "success": true
+}
+```
+
+#### GET /api/movies
+
+- Returns a list of all movies in the database. **Available across all roles.**
+
+```
+Example return:
+
+{
+    "movies": [
+        {
+            "id": 4,
+            "release_date": "February 13th, 2003",
+            "title": "Old School"
+        },
+        {
+            "id": 5,
+            "release_date": "June 2nd, 2009",
+            "title": "The Hangover"
+        },
+        {
+            "id": 6,
+            "release_date": "December 18th, 2018",
+            "title": "Bird Box"
+        }
+    ],
+    "success": true
+}
+```
+
+#### GET /api/actors/<int:id>
+
+- Returns an actor by ID. **Available across all roles.**
+
+```
+Example return:
+
+{
+    "actor": {
+        "age": 19,
+        "gender": "Female",
+        "id": 1,
+        "name": "Valerie Smith"
+    },
+    "success": true
+}
+```
+
+#### GET /api/movies/<int:id>
+
+- Returns a movie by ID. **Available across all roles.**
+
+```
+Example return:
+
+{
+    "movie": {
+        "id": 2,
+        "release_date": "March 31st, 1999",
+        "title": "The Matrix"
+    },
+    "success": true
+}
+```
+
+#### POST /api/actors
+
+- Creates a new Actor. **Available for Director and Producer only.**
+
+```
+Example body:
+
+{
+    "name": "Sandra Bullock",
+    "age": "47",
+    "gender": "Female"
+}
+```
+
+```
+Example response:
+
+{
+    "actor": {
+        "age": 47,
+        "gender": "Female",
+        "id": 7,
+        "name": "Sandra Bullock"
+    },
+    "success": true
+}
+```
+
+#### POST /api/movies
+
+- Creates a new Movie. **Available Producer only.**
+
+```
+Example body:
+
+{
+    "title": "Bird Box",
+    "release_date": "December 18th, 2018"
+}
+```
+
+```
+Example response:
+
+{
+    "movie": {
+        "id": 7,
+        "release_date": "December 18th, 2018",
+        "title": "Bird Box"
+    },
+    "success": true
+}
+```
+
+#### PATCH /api/actors/<int:id>
+
+- Allows editing of an actor by ID. **Available to Director and Producer.**
+
+```
+Example body:
+
+{
+    "name": "John Smith"
+}
+```
+
+```
+Example response:
+
+{
+    "actor": {
+        "age": 42,
+        "gender": "Male",
+        "id": 4,
+        "name": "John Smith"
+    },
+    "success": true
+}
+```
+
+#### PATCH /api/movies/<int:id>
+
+- Allows editing of a movie by ID. **Available to Director and Producer**
+
+```
+Example body:
+
+{
+    "title": "Wedding Crashers"
+}
+```
+
+```
+Example response:
+
+{
+    "movie": {
+        "title": Wedding Crashers,
+        "release_date": "July 15th, 2006",
+        "id": 4
+    },
+    "success": true
+}
+```
+
+#### DELETE /api/actor/<int:id>
+
+- Allows you to delete an Actor by ID. **Available to Director and Producer**
+
+```
+Make a DELETE request to a URL:
+ex: http://localhost:5000/api/actor/4
+
+Example response:
+
+{
+    "actor": {
+        "age": 42,
+        "gender": "Male",
+        "id": 4,
+        "name": "John Smith"
+    },
+    "success": true
+}
+```
+
+#### DELETE /api/movie/<int:id>
+
+- Allows you to delete a Movie by ID. **Available to Producer only.**
+
+```
+Make a DELETE request to a URL:
+ex: http://localhost:5000/api/movies/3
+
+Example response:
+
+{
+    "movie": {
+        "title": Dodgeball,
+        "release_date": "March 15th, 2003",
+        "id": 2
+    },
+    "success": true
+}
+```
+
+### Unittest Implementation
 
 For API testing, it is recommending to use a separate version of a working database to avoid manipulating your working data. To achieve this, we will need to create a database for testing and change a configuration setting.
 
