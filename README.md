@@ -118,7 +118,7 @@ Load your desired endpoints into Postman and with your provided access tokens yo
 
 #### GET /api/actors
 
-- Returns a list of all actors in the database. Available across all roles.
+- Returns a list of all actors in the database. **Available across all roles.**
 
 ```
 Example return:
@@ -268,7 +268,7 @@ Example response:
 
 #### PATCH /api/actors/<int:id>
 
-- Allows editing of an actor by ID. **Available to Director and Producer.**
+- Allows editing of an actor by ID. **Available to Director and Producer only.**
 
 ```
 Example body:
@@ -294,7 +294,7 @@ Example response:
 
 #### PATCH /api/movies/<int:id>
 
-- Allows editing of a movie by ID. **Available to Director and Producer**
+- Allows editing of a movie by ID. **Available to Director and Producer only.**
 
 ```
 Example body:
@@ -319,7 +319,7 @@ Example response:
 
 #### DELETE /api/actor/<int:id>
 
-- Allows you to delete an Actor by ID. **Available to Director and Producer**
+- Allows you to delete an Actor by ID. **Available to Director and Producer only.**
 
 ```
 Make a DELETE request to a URL:
@@ -360,15 +360,15 @@ Example response:
 
 ### Unittest Implementation
 
-For API testing, it is recommending to use a separate version of a working database to avoid manipulating your working data. To achieve this, we will need to create a database for testing and change a configuration setting.
+For unit testing, it is recommending to use a separate version of a working database to avoid manipulating your working data. To achieve this, you will need to create a new database for testing purposes and change two configuration settings in the project.
 
-```bash
+```
 createdb test_castingagency
 ```
 
 Make sure you are in the project directory and run the following command:
 
-```bash
+```
 psql test_castingagency < test_castingagency.psql
 ```
 
@@ -378,9 +378,9 @@ Once this is done, you will have a new database filled with dummy data to use fo
 
 With a testing database created, check to make sure setup.sh reflects the appropriate testing database url. Then open up the models.py file and follow the instructions to comment out the appropriate database_path variable.
 
-As long as your Access Tokens are valid, you should be ready to test your application.
+As long as your Access Tokens are valid (less than 24hrs), you should be ready to test your application. If needed, you can follow the directions above to generate new tokens.
 
-When ready, CD into your project directory and run:
+If you're ready to run a unit test, CD into your project directory and run:
 
 ###### For Windows 10
 
@@ -394,4 +394,4 @@ py test.py
 python3 test.py
 ```
 
-There will be 15 individual tests that test a variety of Authentication, CRUD and status_code errors.
+There will be 15 individual tests that test a variety of Authentication, CRUD and status_code errors to make sure the API is functioning as intended.
