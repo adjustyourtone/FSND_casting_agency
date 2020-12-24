@@ -2,26 +2,26 @@
 
 ## Capstone Submission for Udacity's Full Stack Nanodegree Program
 
-**Heroku Link** (https://localhost:5000)
+**Heroku Link** (https://infinite-wildwood-17516.herokuapp.com/)
 **Local Machine** (https://localhost:5000)
 
 #### Project Motivations
 
-This project was built to satisfy the requirements of the Udacity Full-Stack Nanodegree. The main motivation for this project is to demonstrate my ability to build a real-world Application Programming Interface that could be augmented to fit a wide range of uses. I hope this project demonstrates my attention to detail, clarity in code and an understanding of modern security protocols.
+This project was built to satisfy the requirements of the Udacity Full-Stack Nanodegree. The main motivation for this project is to demonstrate my ability to build a real-world Application Programming Interface (API) that could be augmented to fit a wide range of uses. I hope this project demonstrates my attention to detail, clarity in code and an understanding of modern security protocols.
 
 ## Getting Started
 
-### Setting up your project
+### Setting up your project locally
 
 To run this project locally, start by cloning the repository with:
 
-```bash
+```
 git clone https://github.com/adjustyourtone/FSND_casting_agency.git
 ```
 
 #### Install Python 3
 
-Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
+If you don't have it already, follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
 
 #### Virtual Enviornment
 
@@ -31,7 +31,7 @@ It is recommended to work within a virtual environment whenever using Python for
 
 Once you have your virtual environment setup and running, install dependencies by naviging to the projecty directory and running:
 
-```bash
+```
 pip install -r requirements.txt
 ```
 
@@ -47,7 +47,7 @@ pip install -r requirements.txt
 
 If running locally you must create a postgres database on your system using:
 
-```bash
+```
 createdb castingagency
 ```
 
@@ -71,7 +71,15 @@ As a reminder, these strings are formatted as:
 
 postgresql://{username}:{password}@{host}:{port}/{database_name}
 
+Once a valid database is created run, use the following command to update your database.
+
+```
+flask db upgrade
+```
+
 ### Generating Access Tokens
+
+Before you can being interacting with the API, you must generate valid access tokens.
 
 This project has Role-Based authorization implemented with [Auth0](https://auth0.com) which will provide only specific operations based on the users given role: Assistant, Director and Producer.
 
@@ -81,13 +89,15 @@ Director - All permissions of Assistant + create, edit and delete of Actor and e
 
 Producer - All permissions of Director + create and delete Movie.
 
-This project has provided 3 working access tokens that are included in the **Roles.txt** and **setup.sh** files. Note the timestamp at the top of the Roles.txt file. If the time of testing is beyond the 24hrs mark, you will need to generate new access tokens. To generate a token for a role make sure your application is running and navigate to the authorization url:
+This project has provided 3 working access tokens that are included in the **Roles.txt** and **setup.sh** files. Note the timestamp at the top of the Roles.txt file. If the time of testing is beyond the 24hrs mark, you will need to generate new access tokens.
+
+**To generate a token for a role make sure your application is running and navigate to the authorization url:**
 
 ```
 http://localhost:5000/authorization/url
 ```
 
-This will generate a login link and redirect you to Auth0 to sign-in with the provided credentials in the **Roles.txt** file in the project directory.
+This will generate a login link to click and redirect you to Auth0 to sign-in with the provided credentials in the **Roles.txt** file in the project directory.
 
 Upon successful login, you will be redirected to the index of your host. Inspect the url upon redirect to see the provided access token inclued within. It should look something like this:
 
@@ -99,9 +109,9 @@ Copy this token all the way up to the
 ....&expires_in=86400&token_type=Bearer (make sure to leave this section out of the token)
 ```
 
-With your token in hand, make note of which credential you used to sign in and navigate over to your setup.sh file in the project directory and replace the provided JWT with your newly provided JWT.
+With your token in hand, make note of which credential you used to sign in and navigate over to your **setup.sh** file in the project directory and replace the provided JWT with your newly provided token.
 
-To generate a token for a new role, navigate to '/authorization/logout' where you will be provided a logout link. Click the link to be logged out. You will be redirected to the '/authorization/url' endpoint where you can sign-in again.
+To generate a token for a new role, you must sign out of the application. Navigate to '/authorization/logout' where you will be provided a logout link. Click the link to be logged out. You will be redirected to the '/authorization/url' endpoint where you can sign-in again.
 
 Repeat as needed for each role.
 
@@ -112,14 +122,17 @@ Because we will be using Postman to test this API, it is recommended you replace
 With the API running, we will use Postman to check and verify role based actions. There are two included postman collections for you to use depending on how you choose to interact with the API:
 
 ```
-FSND_casting_agency.postman_collection  OR
+Local Development:
+local_dev_casting_agency.postman_collection.json  OR
 
-HEROKU_casting_agency.postman_collection
+heroku_casting_agency.postman_collection.json
 ```
 
 Load your desired endpoints into Postman and with your provided access tokens you can begin interacting with the API.
 
 ### API Endpoint Reference
+
+All tokens should be used as an "Authorization": "Bearer" token.
 
 #### GET /api/actors
 
@@ -333,7 +346,7 @@ ex: http://localhost:5000/api/actor/4
 Example response:
 
 {
-    "actor": {
+    "deleted": {
         "age": 42,
         "gender": "Male",
         "id": 4,
@@ -354,7 +367,7 @@ ex: http://localhost:5000/api/movies/3
 Example response:
 
 {
-    "movie": {
+    "deleted": {
         "title": Dodgeball,
         "release_date": "March 15th, 2003",
         "id": 2
@@ -400,9 +413,9 @@ Once this is done, you will have a new database filled with dummy data to use fo
 
 ##### Reconfigure Application
 
-With a testing database created, check to make sure setup.sh reflects the appropriate testing database url. Then open up the models.py file and follow the instructions to comment out the appropriate database_path variable.
+With a testing database created and populated, check to make sure **setup.sh** reflects the appropriate testing database url. Then open up the models.py file and follow the instructions to comment out the appropriate database_path variable.
 
-As long as your Access Tokens are valid (less than 24hrs), you should be ready to test your application. If needed, you can follow the directions above to generate new tokens.
+As long as your Access Tokens are valid (up to 24hrs), you should be ready to test your application. If needed, you can follow the directions above to generate new tokens.
 
 If you're ready to run a unit test, CD into your project directory and run:
 
@@ -419,3 +432,5 @@ python3 test.py
 ```
 
 There will be 15 individual tests that test a variety of Authentication, CRUD and status_code errors to make sure the API is functioning as intended.
+
+Enjoy!

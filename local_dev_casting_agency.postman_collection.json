@@ -1,0 +1,369 @@
+{
+	"info": {
+		"_postman_id": "df432f23-4cf0-4948-95ed-63668507b2cd",
+		"name": "Local Dev Casting Agency Endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create New Actors",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYtQ3JfdlZZREVzLUZ4LUxWTUdUdyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iZHo2bWY0Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkZWE5NmNlMDBhODMwMDZlODhmOTIyIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTYwODgyMzg0NywiZXhwIjoxNjA4OTEwMjQ3LCJhenAiOiJ5aW9EcVl5ZDBvM3AxOHoxSndCVW16RUl5MTY4ZkVBcSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvciIsInBhdGNoOm1vdmllIiwicG9zdDphY3RvciJdfQ.Q3IDDeAWGG6GBRfRvRE28IPvAw2onQKhsfpj9zipOAwEds43POcAye58krmUJGQhh0qBp91sHKaFT52ajQyC460ckJWhE_ufGwjMDE9bWkC8JqMn0V8B972Rs62UlNuILzCYi_4wfpa3VSNENWwgvccwJoACcpRTW8UzsHp224_tYZmRDMW0Mi4EF4GHl8KkDBtPQtA4r7dcYOjRQyyVql9eL26ig1W0-Yr5btJFFDK_-Z992Itn6x_xbzSy511cyyRsChhxVei0foHzLZwbAqlmnJFknYuvzFM4d-npEyK4lCD4OCxDD6AYTWKKuIXnBQaPZyoMYIBERwltAorsdA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Sandra Bullock\",\r\n    \"age\": \"47\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/actors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"actors"
+					]
+				},
+				"description": "This endpoint can send JSON to create an actor"
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYtQ3JfdlZZREVzLUZ4LUxWTUdUdyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iZHo2bWY0Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkZWE5OGMwODI4NGIwMDZiYjRjMmRiIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTYwODgxOTMzNywiZXhwIjoxNjA4OTA1NzM3LCJhenAiOiJ5aW9EcVl5ZDBvM3AxOHoxSndCVW16RUl5MTY4ZkVBcSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZGVsZXRlOm1vdmllIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvciIsInBhdGNoOm1vdmllIiwicG9zdDphY3RvciIsInBvc3Q6bW92aWUiXX0.IUugB39F6xYYI1J6h7OepLRGQzCy81ifyHMtnxm6c73oPlg-VnOSCdvbXZGfMP4wABM2S42iND0wTCBwRBEef4bawqv7LP5qNrQWgdDxRuNn9mgr44-3VaqKuUxji4JbVlfEHf9TZ6KvTP8j5b8nqSOpO6CMyLvlQEk2jh82MmZWZX0XGnDRmjfneZrj2iXzoHvCCC6axWwbKJQblZGVobKWv5P2cuEyKcd8wVeFQQA8E2_KwpghVAAcw-Ne_KvJXWnTd24pVTwusAAqZC-YzvEtvQxGo_jI1-D7eIw6baSnE3DYQ2KmIU0VK8i2ASvAy0pgivooT49kUgP2du2ExA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Bird Box\",\r\n    \"release_date\": \"December 18th, 2018\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"movies"
+					]
+				},
+				"description": "send JSON to create a new movie"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Actor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYtQ3JfdlZZREVzLUZ4LUxWTUdUdyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iZHo2bWY0Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkZWE5NmNlMDBhODMwMDZlODhmOTIyIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTYwODgyMzg0NywiZXhwIjoxNjA4OTEwMjQ3LCJhenAiOiJ5aW9EcVl5ZDBvM3AxOHoxSndCVW16RUl5MTY4ZkVBcSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvciIsInBhdGNoOm1vdmllIiwicG9zdDphY3RvciJdfQ.Q3IDDeAWGG6GBRfRvRE28IPvAw2onQKhsfpj9zipOAwEds43POcAye58krmUJGQhh0qBp91sHKaFT52ajQyC460ckJWhE_ufGwjMDE9bWkC8JqMn0V8B972Rs62UlNuILzCYi_4wfpa3VSNENWwgvccwJoACcpRTW8UzsHp224_tYZmRDMW0Mi4EF4GHl8KkDBtPQtA4r7dcYOjRQyyVql9eL26ig1W0-Yr5btJFFDK_-Z992Itn6x_xbzSy511cyyRsChhxVei0foHzLZwbAqlmnJFknYuvzFM4d-npEyK4lCD4OCxDD6AYTWKKuIXnBQaPZyoMYIBERwltAorsdA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John Smith\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/actors/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"actors",
+						"4"
+					]
+				},
+				"description": "Send JSON to update an actor by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Movie by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYtQ3JfdlZZREVzLUZ4LUxWTUdUdyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iZHo2bWY0Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkZWE4Y2ZiYmM0ZjkwMDZmMWY0ZWJkIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTYwODgyNDEwOSwiZXhwIjoxNjA4OTEwNTA5LCJhenAiOiJ5aW9EcVl5ZDBvM3AxOHoxSndCVW16RUl5MTY4ZkVBcSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiXX0.SiXARqcv6ShXpruDDh9_-8HhBSRdtnhqQ4wIviR2S2CmJkLsMf2yQU7AhkPT3PdD34Ea2gCR6KLdrjmWOU72WRKtXZS4NXfvRFTpMK7ZHaGutiKIVW3gX9xf5Qwuf7YhekL3YuAY24eOc3ofGYyisidfKf9RvO69gwQysJS0RDY8zD6Uw8Kc_giTB1f5Tyu-qJb1-UE6t2F08eq3EDJOUYRFLpzmvLw3eClQKQwYfHzrrB6P12h7Ssvota9rgA-QNTp6ucn60ff0ICu7OF4a6HVPVF1uhS9C3loU7-vN2t557wTOf5dlODnkZ0R6AB4mGm7jDghvcNH0Xl18di9ZlQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/movies/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"movies",
+						"2"
+					]
+				},
+				"description": "View a movie by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Actor by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYtQ3JfdlZZREVzLUZ4LUxWTUdUdyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iZHo2bWY0Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkZWE4Y2ZiYmM0ZjkwMDZmMWY0ZWJkIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTYwODgyNDEwOSwiZXhwIjoxNjA4OTEwNTA5LCJhenAiOiJ5aW9EcVl5ZDBvM3AxOHoxSndCVW16RUl5MTY4ZkVBcSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiXX0.SiXARqcv6ShXpruDDh9_-8HhBSRdtnhqQ4wIviR2S2CmJkLsMf2yQU7AhkPT3PdD34Ea2gCR6KLdrjmWOU72WRKtXZS4NXfvRFTpMK7ZHaGutiKIVW3gX9xf5Qwuf7YhekL3YuAY24eOc3ofGYyisidfKf9RvO69gwQysJS0RDY8zD6Uw8Kc_giTB1f5Tyu-qJb1-UE6t2F08eq3EDJOUYRFLpzmvLw3eClQKQwYfHzrrB6P12h7Ssvota9rgA-QNTp6ucn60ff0ICu7OF4a6HVPVF1uhS9C3loU7-vN2t557wTOf5dlODnkZ0R6AB4mGm7jDghvcNH0Xl18di9ZlQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/actors/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"actors",
+						"1"
+					]
+				},
+				"description": "Get an Actor by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Movies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYtQ3JfdlZZREVzLUZ4LUxWTUdUdyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iZHo2bWY0Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkZWE5NmNlMDBhODMwMDZlODhmOTIyIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTYwODgyMzg0NywiZXhwIjoxNjA4OTEwMjQ3LCJhenAiOiJ5aW9EcVl5ZDBvM3AxOHoxSndCVW16RUl5MTY4ZkVBcSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvciIsInBhdGNoOm1vdmllIiwicG9zdDphY3RvciJdfQ.Q3IDDeAWGG6GBRfRvRE28IPvAw2onQKhsfpj9zipOAwEds43POcAye58krmUJGQhh0qBp91sHKaFT52ajQyC460ckJWhE_ufGwjMDE9bWkC8JqMn0V8B972Rs62UlNuILzCYi_4wfpa3VSNENWwgvccwJoACcpRTW8UzsHp224_tYZmRDMW0Mi4EF4GHl8KkDBtPQtA4r7dcYOjRQyyVql9eL26ig1W0-Yr5btJFFDK_-Z992Itn6x_xbzSy511cyyRsChhxVei0foHzLZwbAqlmnJFknYuvzFM4d-npEyK4lCD4OCxDD6AYTWKKuIXnBQaPZyoMYIBERwltAorsdA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"movies"
+					]
+				},
+				"description": "View all movies in JSON"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYtQ3JfdlZZREVzLUZ4LUxWTUdUdyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iZHo2bWY0Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkZWE5NmNlMDBhODMwMDZlODhmOTIyIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTYwODYzOTM0OSwiZXhwIjoxNjA4NzI1NzQ5LCJhenAiOiJ5aW9EcVl5ZDBvM3AxOHoxSndCVW16RUl5MTY4ZkVBcSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvciIsInBhdGNoOm1vdmllIiwicG9zdDphY3RvciJdfQ.Vim4jGTDxWW7uAnKlPMjhW8Ljs7EerAZHeB9aKvMuCD_ik6pB2N5d0tmBGE3prRw3P1D5j6tHNxC_IUT81TjBGf9Sw8EuM7inppMKgYoL4mPpYG400bYtnlFwBdVDGhZUsa0aY-uTdCprf_pqg76gDWTC_mJi03Wyd-mJah3Le1Usfh37GBk6h35n5tU3xrZNOm0cVwtcOaZemTb86OlOYlByd-sFuB8OodWzkRh76GNn8monlzvjeKSJkb0t2_Z2K5w769CTn82tWbDIwjSdfVrIjtvfVBe1azVHAm4CBxTDo-ofMLaizwtOs2tstVL4L3O7vz_H6hMTZs_5498-A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Pizza Man\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/movies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"movies",
+						"1"
+					]
+				},
+				"description": "Send JSON to update a movie"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Actor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYtQ3JfdlZZREVzLUZ4LUxWTUdUdyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iZHo2bWY0Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkZWE5OGMwODI4NGIwMDZiYjRjMmRiIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTYwODYzODg5NiwiZXhwIjoxNjA4NzI1Mjk2LCJhenAiOiJ5aW9EcVl5ZDBvM3AxOHoxSndCVW16RUl5MTY4ZkVBcSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZGVsZXRlOm1vdmllIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvciIsInBhdGNoOm1vdmllIiwicG9zdDphY3RvciIsInBvc3Q6bW92aWUiXX0.Dbqj1elLc_bM0nSblNC-Qz_GNZA6pbk4YcY0h_Y4fBwgximCn6R5XIjar--NQScSjzU6FRVyiiSBgLkx897seE93jJE0LXXtsghBAPHyLRIKPCqjSBpzzAXJslXXqr0XRKeJgE_c6-hzWE5T5RHwAtQ9h9HiMfXiQprg_HCrXyz_7yR8APMUUqzFMvsA6s0jCjNnPUxUmVfL5nc_jrau5nTivGC-5lCVOsDeiTbCQGkm0L_g_Vd1w4-ElNFXliALQCefYggf_lcQ8a0IFP8v_p2-vBCdk9HsNRUTsG0lOQhfpNU_vyF_86wWWYG-H4VtE5Buben_Mq-luTn33nRczA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/actors/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"actors",
+						"10"
+					]
+				},
+				"description": "Delete an Actor by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYtQ3JfdlZZREVzLUZ4LUxWTUdUdyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iZHo2bWY0Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkZWE5OGMwODI4NGIwMDZiYjRjMmRiIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTYwODUxMDA4OSwiZXhwIjoxNjA4NTE3Mjg5LCJhenAiOiJ5aW9EcVl5ZDBvM3AxOHoxSndCVW16RUl5MTY4ZkVBcSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZGVsZXRlOm1vdmllIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvciIsInBhdGNoOm1vdmllIiwicG9zdDphY3RvciIsInBvc3Q6bW92aWUiXX0.KooW3Rfyf1qrK2BCSRtKA0qQVW_-yWgXz15ia6yLgnSwMOjOGMMXcQ3S0wpBfLuCG2k6IP5pwA7wXOB4TWPYb55NuDXOK7nGPmh_32U5JkoOSuaBiWjUz-9uoYsGyqaTGzcpKahzDaINBINQ9zDmJ_Knic8PtfqtRoMbIYSnm5d5uWY-TuTVSLUzU2gUqvzK9eAPLeZVolAol82bKZ2jleiEuSyPQtO0ei3GSCbsRUfeey482aGsRFZYK--rbkfxqykg9TZwcIWYhprAnjBGwnG5InmjBiTlJob18OXJUM7PwbxYW0NORDI6adWbHDLs16-NA2BAD-x6TKNu0HRNMQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/movies/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"movies",
+						"4"
+					]
+				},
+				"description": "Delete a movie by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Actors",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"user-agent": true,
+					"host": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYtQ3JfdlZZREVzLUZ4LUxWTUdUdyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iZHo2bWY0Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkZWE4Y2ZiYmM0ZjkwMDZmMWY0ZWJkIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTYwODgyNDEwOSwiZXhwIjoxNjA4OTEwNTA5LCJhenAiOiJ5aW9EcVl5ZDBvM3AxOHoxSndCVW16RUl5MTY4ZkVBcSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiXX0.SiXARqcv6ShXpruDDh9_-8HhBSRdtnhqQ4wIviR2S2CmJkLsMf2yQU7AhkPT3PdD34Ea2gCR6KLdrjmWOU72WRKtXZS4NXfvRFTpMK7ZHaGutiKIVW3gX9xf5Qwuf7YhekL3YuAY24eOc3ofGYyisidfKf9RvO69gwQysJS0RDY8zD6Uw8Kc_giTB1f5Tyu-qJb1-UE6t2F08eq3EDJOUYRFLpzmvLw3eClQKQwYfHzrrB6P12h7Ssvota9rgA-QNTp6ucn60ff0ICu7OF4a6HVPVF1uhS9C3loU7-vN2t557wTOf5dlODnkZ0R6AB4mGm7jDghvcNH0Xl18di9ZlQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/actors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"actors"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
