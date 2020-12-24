@@ -1,3 +1,4 @@
+import os
 import json
 from flask import request
 from functools import wraps
@@ -5,12 +6,12 @@ from jose import jwt
 from urllib.request import urlopen
 
 
-AUTH0_DOMAIN = 'dev-bdz6mf42.us.auth0.com'
-ALGORITHMS = ['RS256']
-API_AUDIENCE = 'CastingAgency'  # unique identifier
-CLIENT_ID = 'yioDqYyd0o3p18z1JwBUmzEIy168fEAq'
-REDIRECT_URL = 'http://localhost:5000'
-LOGOUT_URL = 'http://localhost:5000/logout'
+AUTH0_DOMAIN = os.environ['AUTH0_DOMAIN']
+ALGORITHMS = os.environ['ALGORITHMS']
+API_AUDIENCE = os.environ['API_AUDIENCE']  # unique identifier
+CLIENT_ID = os.environ['CLIENT_ID']
+REDIRECT_URL = os.environ['REDIRECT_URL']
+LOGOUT_URL = os.environ['LOGOUT_URL']
 
 
 # Error handler
