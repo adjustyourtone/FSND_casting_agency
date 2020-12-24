@@ -3,6 +3,11 @@
 ## Capstone Submission for Udacity's Full Stack Nanodegree Program
 
 **Heroku Link** (https://localhost:5000)
+**Local Machine** (https://localhost:5000)
+
+#### Project Motivations
+
+This project was built to satisfy the requirements of the Udacity Full-Stack Nanodegree. The main motivation for this project is to demonstrate my ability to build a real-world Application Programming Interface that could be augmented to fit a wide range of uses. I hope this project demonstrates my attention to detail, clarity in code and an understanding of modern security protocols.
 
 ## Getting Started
 
@@ -54,8 +59,8 @@ If you've followed these directions completely, you must run two commands to get
 
 ```
 source setup.sh
-flask run --reload
 
+flask run --reload
 ```
 
 Note: The --reload flag will detect changes and restart your development server automatically.
@@ -367,6 +372,13 @@ This application contains unique error handlers for a variety of authentication 
 - 404 - Resource Not Found
 - 422 - Unprocessable Entity
 - 500 - Internal Server Error
+
+There will also be unique authentication errors raise from Auth0 in the situation of:
+
+- expired tokens
+- invalid claims
+- invalid token
+- improper permissions
 
 ### Unittest Implementation
 
