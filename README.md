@@ -20,7 +20,7 @@ Follow instructions to install the latest version of python for your platform in
 
 #### Virtual Enviornment
 
-It is recommended to work within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Further instructions for setting up a virual environment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+It is recommended to work within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Further instructions for setting up a virual environment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/).
 
 #### PIP Dependencies
 
@@ -29,8 +29,6 @@ Once you have your virtual environment setup and running, install dependencies b
 ```bash
 pip install -r requirements.txt
 ```
-
-This will install all of the required packages we selected within the `requirements.txt` file.
 
 ##### Key Dependencies
 
@@ -73,7 +71,9 @@ postgresql://{username}:{password}@{host}:{port}/{database_name}
 This project has Role-Based authorization implemented with [Auth0](https://auth0.com) which will provide only specific operations based on the users given role: Assistant, Director and Producer.
 
 Assistant - get:movies, get:actors
+
 Director - All permissions of Assistant + create, edit and delete of Actor and edit:movie ONLY.
+
 Producer - All permissions of Director + create and delete Movie.
 
 This project has provided 3 working access tokens that are included in the **Roles.txt** and **setup.sh** files. Note the timestamp at the top of the Roles.txt file. If the time of testing is beyond the 24hrs mark, you will need to generate new access tokens. To generate a token for a role make sure your application is running and navigate to the authorization url:
