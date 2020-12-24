@@ -23,7 +23,6 @@ def create_app(test_config=None):
 # Routes
 #----------------------------------------------------------------------------#
 
-
     @app.route('/')
     def health_check():
         return jsonify({
@@ -31,7 +30,6 @@ def create_app(test_config=None):
         }), 200
 
     # This endpoint will allow you to sign in to Auth0 to generate a new access token. Please read the section on Token Generation in the README.MD
-
     @app.route("/authorization/url", methods=["GET"])
     def generate_auth_url():
         """This endpoint will allow you to generate an auth URL"""
@@ -46,7 +44,6 @@ def create_app(test_config=None):
         }), 200
 
     # NOTE: Use this endpoint to easily logout of an Auth0 session to generate a new access token. See README.MD for more information.
-
     @app.route('/authorization/logout', methods=['GET'])
     def generate_logout_url():
         """This endpoint will clear your Auth0 session."""
@@ -54,6 +51,7 @@ def create_app(test_config=None):
             f'client_id={CLIENT_ID}&returnTo={LOGOUT_URL}'
 
         return jsonify({
+            'message': 'Please click this link to logout of your Auth0 session.',
             'logout_url': url
         }), 200
 
