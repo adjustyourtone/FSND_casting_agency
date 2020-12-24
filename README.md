@@ -3,6 +3,7 @@
 ## Capstone Submission for Udacity's Full Stack Nanodegree Program
 
 **Heroku Link** (https://infinite-wildwood-17516.herokuapp.com/)
+
 **Local Machine** (https://localhost:5000)
 
 #### Project Motivations
