@@ -4,14 +4,14 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from models import setup_db, Movie, Actor
 from auth.auth import AUTH0_DOMAIN, CLIENT_ID, REDIRECT_URL, LOGOUT_URL, API_AUDIENCE, AuthError, requires_auth
-from flask_migrate import Migrate
+# from flask_migrate import Migrate
 
-db = SQLAlchemy()
+# db = SQLAlchemy()
 
 
 def create_app(test_config=None):
     app = Flask(__name__)
-    migrate = Migrate(app, db)
+    # migrate = Migrate(app, db)
     setup_db(app)
     CORS(app, resources={r"/api/*"})
 
