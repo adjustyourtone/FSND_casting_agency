@@ -43,13 +43,14 @@ def get_token_auth_header():
     elif header_parts[0].lower() != 'bearer':
         raise AuthError({
             'code': 'invalid_header',
-            'description': 'Authorization header must start with the bearer'}, 401)
+            'description': 'Authorization header must start with the bearer'},
+            401)
 
     return header_parts[1]
 
 
 def check_permissions(permission, payload):
-    """Verifies that the correct permissions are included to access an endpoint."""
+    """Verifies the correct permissions are included to access an endpoint."""
     if 'permissions' not in payload:
         raise AuthError({
             'code': 'invalid_claims',
@@ -106,7 +107,8 @@ def verify_decode_jwt(token):
         except jwt.JWTClaimsError:
             raise AuthError({
                 'code': 'invalid_claims',
-                'description': 'Incorrect claims. Please, check the audience and issuer.'
+                'description': 'Incorrect claims. Please, check the audience\
+                     and issuer.'
             }, 401)
         except Exception:
             raise AuthError({
@@ -121,7 +123,7 @@ def verify_decode_jwt(token):
 
 def requires_auth(permission=''):
     def requires_auth_decorator(f):
-        """This will pass the decoded payload if the permissions have been verfied."""
+        """Pass the decoded payload if the permissions have been verfied."""
         @wraps(f)
         def wrapper(*args, **kwargs):
             token = get_token_auth_header()

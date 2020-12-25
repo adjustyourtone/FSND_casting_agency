@@ -3,7 +3,8 @@ from flask import Flask, request, abort, jsonify
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from models import setup_db, Movie, Actor
-from auth.auth import AUTH0_DOMAIN, CLIENT_ID, REDIRECT_URL, LOGOUT_URL, API_AUDIENCE, AuthError, requires_auth
+from auth.auth import AUTH0_DOMAIN, CLIENT_ID, REDIRECT_URL, LOGOUT_URL, \
+    API_AUDIENCE, AuthError, requires_auth
 from flask_migrate import Migrate
 
 db = SQLAlchemy()
@@ -23,19 +24,18 @@ def create_app(test_config=None):
                              'GET, POST, PATCH, DELETE')
         return response
 
-
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------#
 # Routes
-#----------------------------------------------------------------------------#
-
-
+# ----------------------------------------------------------#
     @app.route('/')
     def health_check():
         return jsonify({
             'status': 'Healthy'
         }), 200
 
-    # This endpoint will allow you to sign in to Auth0 to generate a new access token. Please read the section on Token Generation in the README.MD
+    # This endpoint will allow you to sign in to Auth0 to generate a new
+    # access token. Please read the section on Token Generation in the
+    # README.MD
     @app.route("/authorization/url", methods=["GET"])
     def generate_auth_url():
         """This endpoint will allow you to generate an auth URL"""
@@ -45,11 +45,12 @@ def create_app(test_config=None):
             f'{CLIENT_ID}&redirect_uri=' \
             f'{REDIRECT_URL}'
         return jsonify({
-            'message': 'Click this link to sign in with the provided credentials.',
+            'message': 'Click this link to sign in.',
             'url': url
         }), 200
 
-    # NOTE: Use this endpoint to easily logout of an Auth0 session to generate a new access token. See README.MD for more information.
+    # NOTE: Use this endpoint to easily logout of an Auth0 session to generate
+    # a new access token. See README.MD for more information.
     @app.route('/authorization/logout', methods=['GET'])
     def generate_logout_url():
         """This endpoint will clear your Auth0 session."""
@@ -57,13 +58,16 @@ def create_app(test_config=None):
             f'client_id={CLIENT_ID}&returnTo={LOGOUT_URL}'
 
         return jsonify({
-            'message': 'Please click this link to logout of your Auth0 session.',
+            'message': 'Click this link to logout of your Auth0 session.',
             'logout_url': url
         }), 200
 
     @app.route('/logout')
     def logout():
-        return f"<html><body><p>You are logged out and will be redirected momentarily.</p><script>var timer = setTimeout(function() {{window.location='{ '/authorization/url' }'}}, 3000);</script></body></html>"
+        return f"<html><body><p>You are logged out and will be redirected\
+             momentarily.</p><script>var timer = setTimeout(function()\
+                  {{window.location='{ '/authorization/url' }'}}, 3000);\
+                      </script></body></html>"
 
     @app.route('/api/actors')
     @requires_auth('get:actors')
@@ -76,7 +80,7 @@ def create_app(test_config=None):
                 'success': True,
                 'actors': [actor.format() for actor in actors]
             }), 200
-        except:
+        except BaseException:
             abort(401)
 
     @app.route('/api/movies')
@@ -90,7 +94,7 @@ def create_app(test_config=None):
                 'success': True,
                 'movies': [movie.format() for movie in movies]
             })
-        except:
+        except BaseException:
             abort(401)
 
     @app.route('/api/actors/<int:id>', methods=['GET'])
@@ -129,7 +133,7 @@ def create_app(test_config=None):
 
             new_actor.insert()
 
-        except:
+        except BaseException:
             abort(400)
 
         return jsonify({
@@ -179,7 +183,7 @@ def create_app(test_config=None):
                 'delete': actor.format()
             }), 200
 
-        except:
+        except BaseException:
             abort(401)
 
     @app.route('/api/movies', methods=['POST'])
@@ -200,7 +204,7 @@ def create_app(test_config=None):
                 "movie": new_movie.format()
             }), 200
 
-        except:
+        except BaseException:
             abort(401)
 
     @app.route('/api/movies/<int:id>', methods=['PATCH'])
@@ -254,7 +258,8 @@ def create_app(test_config=None):
         return jsonify({
             "success": False,
             "error": 400,
-            "message": "Bad Request. Please verify the information you submitted is correct and try again."
+            "message": "Bad Request. Please verify the information you \
+                submitted is correct and try again."
         }), 400
 
     @app.errorhandler(401)

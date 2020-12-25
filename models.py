@@ -5,12 +5,12 @@ db = SQLAlchemy()
 
 database_path = os.environ['DATABASE_URL']
 
-#-----------------------------------------------------------------------#
+# ----------------------------------------------------------------#
 # For Testing Only:
 # Please comment out the above database path and use the one below.
 #
 # database_path = os.environ['TEST_DATABASE_URL'])
-#-----------------------------------------------------------------------#
+# ----------------------------------------------------------------#
 
 
 def setup_db(app, database_path=database_path):
