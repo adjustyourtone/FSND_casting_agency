@@ -7,12 +7,13 @@ from auth.auth import AUTH0_DOMAIN, CLIENT_ID, REDIRECT_URL, LOGOUT_URL, \
     API_AUDIENCE, AuthError, requires_auth
 from flask_migrate import Migrate
 
-db = SQLAlchemy()
+
+# db = SQLAlchemy()
 
 
 def create_app(test_config=None):
     app = Flask(__name__)
-    migrate = Migrate(app, db)
+    # migrate = Migrate(app, db)
     setup_db(app)
     CORS(app, resources={r"/api/*"})
 
@@ -38,7 +39,7 @@ def create_app(test_config=None):
     # README.MD
     @app.route("/authorization/url", methods=["GET"])
     def generate_auth_url():
-        """This endpoint will allow you to generate an auth URL"""
+        """This endpoint will allow you to generate an auth URL."""
         url = f'https://{AUTH0_DOMAIN}/authorize' \
             f'?audience={API_AUDIENCE}' \
             f'&response_type=token&client_id=' \

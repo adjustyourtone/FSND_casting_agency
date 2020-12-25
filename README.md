@@ -3,6 +3,7 @@
 ## Capstone Submission for Udacity's Full Stack Nanodegree Program
 
 **Heroku Link** (https://infinite-wildwood-17516.herokuapp.com/)
+
 **Local Machine** (https://localhost:5000)
 
 #### Project Motivations
@@ -67,14 +68,20 @@ Note: The --reload flag will detect changes and restart your development server 
 
 If you need to update your Postgres login credentials, this would also be done in the setup.sh file by changing the DATABASE_URL and TEST_DATABASE_URL strings, respectively.
 
-As a reminder, these strings are formatted as:
-
-postgresql://{username}:{password}@{host}:{port}/{database_name}
+\*\*As a reminder, these strings are formatted as:
 
 Once a valid database is created run, use the following command to update your database.
 
+##### Windows 10
+
 ```
-flask db upgrade
+py manage.py db upgrade
+```
+
+##### Mac/Linux
+
+```
+python3 manage.py db upgrade
 ```
 
 ### Generating Access Tokens
@@ -125,6 +132,7 @@ With the API running, we will use Postman to check and verify role based actions
 Local Development:
 local_dev_casting_agency.postman_collection.json  OR
 
+Live Heroku Deployment:
 heroku_casting_agency.postman_collection.json
 ```
 
